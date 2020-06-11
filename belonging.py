@@ -27,4 +27,3 @@ clusters = [cl1, cl2, cl3]
 p = (17,10)
 
 print(get_belongings(p,clusters))
-"""
