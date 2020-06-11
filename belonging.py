@@ -17,7 +17,7 @@ def get_belongings(p,clusters):
 def distance(org,dest):
     return math.sqrt(pow(dest[0]-org[0],2)+pow(dest[1]-org[1],2))
 
-""" Test the method to obtain the degree of membership for a point
+""" Test the method to obtain the degree of belonging for a point
 cl1 = ["a",(1,1),3]
 cl2 = ["b",(5,4),2]
 cl3 = ["c",(7,9),3.5]
