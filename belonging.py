@@ -4,8 +4,8 @@ def get_belongings(p,clusters):
     belongings = []
     norm = 0
     for x in clusters:
-        d = abs(distance(p,x[1])-x[2])
-        belongings.append((x[0],d))
+        d = abs(distance(p,x.center)-x.radius)
+        belongings.append((x.name,d))
         norm += d
     
     result = []
@@ -27,3 +27,4 @@ clusters = [cl1, cl2, cl3]
 p = (17,10)
 
 print(get_belongings(p,clusters))
+"""
