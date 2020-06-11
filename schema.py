@@ -9,6 +9,7 @@ class Cluster():
         self.center = center
         self.radius = radius
         self.belonging = [] 
+        self.centers = []
     
     def get_result(self):
         return [self.name,self.center,self.radius,self.belonging]

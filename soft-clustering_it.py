@@ -5,9 +5,9 @@ from schema import Cluster
 from tp_extended import get_circle
 
 def soft_clustering(points,clusters):
-    fin = False
+    i=0
     clustersAnterior = clusters;
-    while(fin==False): 
+    while(i<8): 
     # No olvidar la condicion de parada del algoritmo
 
         # En el for, coger el cluster con el gp máximo, y añadir el punto a esa variable x
@@ -28,15 +28,10 @@ def soft_clustering(points,clusters):
                     break
         
         clustersNuevos = calcularNuevosCluster(clusters)
+        i += 1;
+        print(i)
+    get_circle(clustersNuevos,points)
 
-
-        
-        ca = clustersNuevos[2].centers[0]
-        print(ca)
-        for c in range(0,3):
-            if(clustersNuevos[c].center in clustersNuevos[c].centers):
-                fin=True
-                get_circle(clustersNuevos,points)
         
 
 def calcularNuevosCluster(clusters):
