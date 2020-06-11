@@ -3,6 +3,7 @@ import numpy
 from sklearn import preprocessing
 from sklearn import model_selection
 
+
 cars = pandas.read_csv('cars.csv', header=None,
                        names=['buying', 'maint', 'doors', 'persons',
                               'lug_boot', 'safety', 'acceptability']);
