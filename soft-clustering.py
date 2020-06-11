@@ -5,8 +5,9 @@ import get_circle from tp_extended
 
 def soft-clustering(points,clusters):
 
- #    m1 = a b d
- #    m2 = c e
+#    m1 = a b d
+#    m2 = c e
+# No olvidar la condicion de parada del algoritmo
 
     #Crear x variables como x clusters haya
     # En el for, coger el cluster con el gp máximo, y añadir el punto a esa variable x
@@ -15,6 +16,14 @@ def soft-clustering(points,clusters):
         # creo las circunferencias en base a esas circunferencias
         gp = get_belongings(p,clusters)
         cp = max(gp)
+        cp add p
+    
+    clusterNuevos = calcularNuevosCluster(clusters)
+
+    si clustersAnterior = clusterNuevos
+        fin algoritmo
+    sino
+        siguiente iteracion
 
 
 
