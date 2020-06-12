@@ -1,4 +1,5 @@
 import math
+from schema import Cluster
 
 def get_belongings(p,clusters):
     belongings = []
@@ -7,24 +8,35 @@ def get_belongings(p,clusters):
         d = abs(distance(p,x.center)-x.radius)
         belongings.append((x.name,d))
         norm += d
-    """
+    
     result = []
     for x in belongings:
         result.append((x[0],x[1]/norm))
-    """
+    
     return belongings
 
-def distance(org,dest):
-    return math.sqrt(pow(dest[0]-org[0],2)+pow(dest[1]-org[1],2))
+def distance(p0,p1):
+    return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2)
 
-""" Test the method to obtain the degree of belonging for a point
-cl1 = ["a",(1,1),3]
-cl2 = ["b",(5,4),2]
-cl3 = ["c",(7,9),3.5]
+
+cl1 = Cluster("azul",(20.876190476190477, 20.95238095238095),4.922205716383306, '#1f77b4')
+cl2 = Cluster("verde",(7.687499999999999, 4.3166666666666655),1.816310104503276, '#2ca02c')
+cl3 = Cluster("rojo",(13.644117647058826, 8.658823529411766),5.576984354132253, '#cf1717')
 
 clusters = [cl1, cl2, cl3]
 
-p = (17,10)
+p = (11.2,7)
 
 print(get_belongings(p,clusters))
 """
+v = get_belongings(p,clusters)[1]
+r = get_belongings(p,clusters)[2]
+
+print(v[0],v[1]," - ",cl2.radius," = ",abs(v[1]-1.816310104503276))
+print(r[0],r[1]," - ",cl3.radius," = ",abs(r[1]-5.576984354132253))
+"""
+
+d = abs(distance(cl2.center,cl3.center))
+
+print("Distancia entre rojo y verde (centros): ",d)
+print("Suma de los radios de rojo y verde: ",cl2.radius+cl3.radius)

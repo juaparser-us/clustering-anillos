@@ -6,14 +6,37 @@ from tp_extended import get_circle
 
 def soft_clustering(points,clusters):
     fin = False
-    clustersAnterior = clusters;
+    
     while(fin==False): 
-    # No olvidar la condicion de parada del algoritmo
-
-        # En el for, coger el cluster con el gp máximo, y añadir el punto a esa variable x
+        
+        #Se recorren todo los puntos para calcular la distancia y clasificarlos
         for p in points:
-            # Recorro los puntos y calculo el grado de pertenencia a cada cluster
-            # creo las circunferencias en base a esas circunferencias
+            
+            for c in clusters:
+                #Se calcula la distancia del punto <p> a cada cluster
+                ...
+                #Si es el último cluster, compara las distancias y se queda con la más corta
+                ...
+            
+            #Se realiza la clasificación del punto <p> al cluster seleccionado
+            ...
+        
+        #Se actualizan los radios y los centros
+        ...
+
+        #Si los cluster no han cambiado del paso anterior, se continua el algoritmo
+        ...
+
+        #Se muestran los resultados en una gráfrica
+        ...
+        
+
+
+
+
+
+
+"""
             gp = get_belongings(p,clusters)
             cp = ""
             d = 100000
@@ -44,7 +67,7 @@ def calcularNuevosCluster(clusters):
         update_cluster(c)
     return clusters
 
-
+"""
 """
 points = [(9, 7), (7.7, 6.5), (7, 5), (11, 5), (9, 3), (10.3, 3.5), (7.3, 4), (10.3, 6.5), (3, 2), (2, 3), (1, 2), (2, 1), (1.2, 1.4), (1.2, 2.6), (2.7, 1.3), (2.8, 2.6)]
 
