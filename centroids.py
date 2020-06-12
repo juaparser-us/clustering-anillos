@@ -7,7 +7,6 @@ def update_cluster(cluster):
     x = [p[0] for p in points]
     y = [p[1] for p in points]
     
-    cluster.centers.append(cluster.center)
     centroid = (sum(x) / len(points), sum(y) / len(points))
 
     x.append(centroid[0])

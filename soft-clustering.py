@@ -2,7 +2,7 @@ import math
 from belonging import get_belongings
 from centroids import update_cluster
 from schema import Cluster
-from tp_extended import get_circle
+from plot_state import plot_state
 
 def soft_clustering(points,clusters):
     fin = False
@@ -59,7 +59,7 @@ def soft_clustering(points,clusters):
         for c in range(0,3):
             if(clustersNuevos[c].center in clustersNuevos[c].centers):
                 fin=True
-                get_circle(clustersNuevos,points)
+                plot_state(clustersNuevos,points)
         
 
 def calcularNuevosCluster(clusters):
