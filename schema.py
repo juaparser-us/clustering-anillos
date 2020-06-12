@@ -4,12 +4,13 @@
 #       bel: belongings of the point cloud for this cluster
 class Cluster():
 
-    def __init__(self,name,center,radius):
+    def __init__(self,name,center,radius,color):
         self.name = name
         self.center = center
         self.radius = radius
         self.belonging = [] 
         self.centers = []
+        self.color = color
     
     def get_result(self):
         return [self.name,self.center,self.radius,self.belonging]

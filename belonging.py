@@ -7,12 +7,12 @@ def get_belongings(p,clusters):
         d = abs(distance(p,x.center)-x.radius)
         belongings.append((x.name,d))
         norm += d
-    
+    """
     result = []
     for x in belongings:
         result.append((x[0],x[1]/norm))
-
-    return result
+    """
+    return belongings
 
 def distance(org,dest):
     return math.sqrt(pow(dest[0]-org[0],2)+pow(dest[1]-org[1],2))
