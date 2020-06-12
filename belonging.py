@@ -1,7 +1,7 @@
 import math
 from schema import Cluster
 
-"""
+
 def get_belongings(p,clusters):
     belongings = []
     norm = 0
@@ -15,7 +15,7 @@ def get_belongings(p,clusters):
         result.append((x[0],x[1]/norm))
     
     return belongings
-"""
+
 
 
 def get_distance(point,cluster):

@@ -14,8 +14,9 @@ def soft_clustering(points,clusters):
             # Recorro los puntos y calculo el grado de pertenencia a cada cluster
             # creo las circunferencias en base a esas circunferencias
             gp = get_belongings(p,clusters)
-            clasificar(p,gp,clusters) 
-            clustersNuevos = calcularNuevosCluster(clusters)
+            clasificar(p,gp,clusters)
+        
+        clustersNuevos = calcularNuevosCluster(clusters)
 
         i += 1;
     plot_state(clusters,points)
