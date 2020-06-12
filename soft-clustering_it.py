@@ -2,7 +2,7 @@ import math
 from belonging import get_belongings
 from centroids import update_cluster
 from schema import Cluster
-from tp_extended import get_circle
+from plot_state import plot_state
 
 def soft_clustering(points,clusters):
     i=0
@@ -35,7 +35,7 @@ def soft_clustering(points,clusters):
 
         i += 1;
         print(i)
-    get_circle(clusters,points)
+    plot_state(clusters,points)
     for c in clustersNuevos:
         print("Cluster ", c.name, " con centro: ", c.center, " y radio: ", c.radius)
         print("Puntos del cluster: \n", len(c.belonging))
@@ -61,7 +61,7 @@ points = [(9, 8), (7, 7.3), (6, 5), (12, 5), (9, 2), (11, 2.7), (6.4, 3.5), (11,
 print(len(points))
 cl1 = Cluster("a",(11,23),2, '#1f77b4')
 cl2 = Cluster("b",(8,5),0.5, '#2ca02c')
-cl3 = Cluster("c",(12,9.5),3, '#17becf')
+cl3 = Cluster("c",(12,9.5),5, '#17becf')
 
 clusters = [cl1, cl2, cl3]
 

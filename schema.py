@@ -9,7 +9,6 @@ class Cluster():
         self.center = center
         self.radius = radius
         self.belonging = [] 
-        self.centers = []
         self.color = color
     
     def get_result(self):
