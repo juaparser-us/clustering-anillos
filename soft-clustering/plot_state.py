@@ -13,6 +13,7 @@ def plot_state(clusters, points):
     ax.set(xlim=(0, 30), ylim = (0, 25))
 
     for c in clusters:
+        belongings = c.belonging.keys()
         xc = c.center[0];
         yc = c.center[1];
         ax.scatter(xc,yc, marker="x", c=c.color)
@@ -23,7 +24,7 @@ def plot_state(clusters, points):
             r = c.radius
         a_circle = plt.Circle((c.center[0], c.center[1]), r,fill=False,color=c.color)
         ax.add_artist(a_circle)
-        for p in points:
+        for p in belongings:
             ax.scatter(p[0],p[1], c=c.color)
     
   

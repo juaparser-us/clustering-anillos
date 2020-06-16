@@ -8,14 +8,14 @@ class Cluster():
         self.name = name
         self.center = center
         self.radius = radius
-        self.belonging = [] 
+        self.belonging = {}
         self.color = color
     
     def get_result(self):
         return [self.name,self.center,self.radius,self.belonging]
     
-    def asignar(self,punto):
-        self.belonging.append(punto)
+    def assign(self,point,gp):
+        self.belonging[point] = gp
 
 #in ->  num: iteration number
 #       clusters: list of all cluster in this iteration
