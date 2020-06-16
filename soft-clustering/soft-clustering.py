@@ -1,6 +1,7 @@
 import math
-from methods import get_distance, calcularNuevosCluster
+
 from schema import Cluster
+from methods import get_distance, calcularNuevosCluster
 from plot_state import plot_state
 
 def soft_clustering(points,clusters):
@@ -33,7 +34,7 @@ def soft_clustering(points,clusters):
         #Se muestran los resultados en una gráfrica
         plot_state(clustersNuevos,points)
         
-"""
+""" Test dos cluster
 points = [(9, 7), (7.7, 6.5), (7, 5), (11, 5), (9, 3), (10.3, 3.5), (7.3, 4), (10.3, 6.5), (3, 2), (2, 3), (1, 2), (2, 1), (1.2, 1.4), (1.2, 2.6), (2.7, 1.3), (2.8, 2.6)]
 
 cl1 = Cluster("a",(3,2.5),1)
