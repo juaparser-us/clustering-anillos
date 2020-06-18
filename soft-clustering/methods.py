@@ -3,6 +3,17 @@ from schema import Cluster
 import numpy as np
 import matplotlib.pyplot as plt
 from plot_state import plot_state
+import csv
+
+def import_csv(file):
+
+    with open(file, newline='') as File:  
+        reader = csv.reader(File,delimiter=',')
+        res = []
+        for row in reader:
+            res.append((float(row[0]),float(row[1])))
+    
+    return res
 
 def get_distances(p,clusters):
     
@@ -117,6 +128,40 @@ def bubbleSort(lista):
         i += 1
 
     return result
+
+def get_tests_points(nc,nps):
+    cir = {}
+
+    #Obtenemos el número de circunferencias que queremos
+    for i in range(nc):
+        x = round(np.random.uniform(-3,3),3)
+        y = round(np.random.uniform(-3,3),3)
+        r = round(np.random.uniform(-3,3),3)
+        cir[(x,y)] = r
+
+    res_x = []
+    res_y = []
+
+    random = 0
+    for c in cir:
+        random = 0
+        while(random<nps):
+            x = round(np.random.uniform(-6,6),3)
+            y = round(np.random.uniform(-6,6),3)
+
+            ec = (x - c[0])**2 + (y - c[1])**2 
+            r = cir[c]
+
+            if((ec > (r**2)-0.1) and (ec < (r**2)+0.1) and (x not in res_x) and (y not in res_y)):
+                res_x.append(x)
+                res_y.append(y)
+                random += 1
+
+    fig, ax = plt.subplots()
+    ax.set(xlim=(-10, 10), ylim = (-10, 10))
+
+    plt.plot(res_x,res_y,'o',markersize=2)
+    plt.show()
 
 # TESTING -----------------------------------------------------------------------------------
 """
