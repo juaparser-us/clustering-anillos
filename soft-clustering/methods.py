@@ -29,19 +29,7 @@ def get_distances(p,clusters):
         result[x[0]]= (1-(x[1]/norm))/2
     
     return result
-"""
-#tener en cuenta si está dentro de la circunferencia
-def near_cluster(cluster):
-    for p in cluster.belonging:
-        d = abs(distance(p,cluster.center)-cluster.radius)
-        if(d>0.3):
-            re_assign(point,gp)
 
-(p1 - xc)**2 + (p2 - yc)**2 = r**2
-def assign_point(point,gp,clusters):
-    for c in clusters:
-        c.assign(point,gp[c])
-"""
 def assign_point(point,gp,clusters):
     max = (None,0)
     for c in clusters:
@@ -91,10 +79,7 @@ def comprobar_radio(cluster):
     for p in points:
         d = (p,distance(p,cluster.center))
         diff = abs(ant[1]-d[1])
-        if(9.8 in p):
-            print(p)
-            print(diff)
-            print(ant)
+
         if(diff>0.2):
             lista.append(d[0])
             del cluster.belonging[d[0]]
@@ -105,7 +90,7 @@ def comprobar_radio(cluster):
     return lista
 
 def bubbleSort(lista):
-    print(lista)
+
     n = len(lista)
     points = lista
     result = [lista[0]]
@@ -115,15 +100,15 @@ def bubbleSort(lista):
     while(i<n-1):
         dist_ant = (0,0)
         n2 = len(points)
-        print("n2: ",n2)
+        
         for j in range(n2):
             d = distance(result[i],points[j])            
             if (d<dist_ant[1] or dist_ant[1] == 0):
                 dist_ant = (points[j],d)
+
         if(dist_ant[0] != 0):
             result.append(dist_ant[0])
-        print("Result",i+1,": ",len(result))
-        print("Listaaaaaa: ",points)
+
         points.remove(result[i+1])
         i += 1
 
@@ -139,6 +124,7 @@ def get_tests_points(nc,nps):
         r = round(np.random.uniform(-3,3),3)
         cir[(x,y)] = r
 
+    res = []
     res_x = []
     res_y = []
 
@@ -156,12 +142,17 @@ def get_tests_points(nc,nps):
                 res_x.append(x)
                 res_y.append(y)
                 random += 1
+    
+    for i in range(len(res_x)):
+        res.append((res_x[i],res_y[i]))
 
     fig, ax = plt.subplots()
     ax.set(xlim=(-10, 10), ylim = (-10, 10))
 
     plt.plot(res_x,res_y,'o',markersize=2)
     plt.show()
+
+    return res
 
 # TESTING -----------------------------------------------------------------------------------
 """
