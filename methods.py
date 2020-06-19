@@ -121,6 +121,43 @@ def bubbleSort(lista):
 def get_tests_points(nc,nps):
     cir = {}
 
+    cir[(9,5)] = 3
+    cir[(9,5.01)] = 5
+
+    res = []
+    res_x = []
+    res_y = []
+
+    random = 0
+    for c in cir:
+        random = 0
+        while(random<nps):
+            x = round(np.random.uniform(0,23),3)
+            y = round(np.random.uniform(0,28),3)
+
+            ec = (x - c[0])**2 + (y - c[1])**2 
+            r = cir[c]
+
+            if((ec > (r**2)-0.1) and (ec < (r**2)+0.1) and (x not in res_x) and (y not in res_y)):
+                res_x.append(x)
+                res_y.append(y)
+                random += 1
+    
+    for i in range(len(res_x)):
+        res.append((res_x[i],res_y[i]))
+
+    __, ax = plt.subplots()
+    ax.set(xlim=(0, 25), ylim = (0, 30))
+
+    plt.plot(res_x,res_y,'o',markersize=2)
+    plt.show()
+    
+    return res
+
+"""
+def get_tests_points(nc,nps):
+    cir = {}
+
     #Obtenemos el número de circunferencias que queremos
     for i in range(nc):
         x = round(np.random.uniform(0,15),3)
@@ -157,7 +194,7 @@ def get_tests_points(nc,nps):
     plt.show()
     
     return res
-
+"""
 # TESTING -----------------------------------------------------------------------------------
 """
 cl1 = Cluster("azul",(20.876190476190477, 20.95238095238095),4.922205716383306, '#1f77b4')

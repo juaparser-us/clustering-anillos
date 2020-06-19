@@ -11,9 +11,9 @@ print("2) Nube de puntos importada desde un .csv")
 input1 = int(input()) 
   
 if (input1 == 1):
-
-    points = get_tests_points(3,70)
-
+"""
+points = get_tests_points(2,70)
+"""
     cl1 = Cluster("Azul",
         (round(np.random.uniform(0,15),3),round(np.random.uniform(0,20),3)),
         round(np.random.uniform(0,8),3), '#1f77b4')
@@ -36,9 +36,9 @@ if(input1 == 2):
     input2 = input()
     print("Y también escriba el número de clústers:")
     input3 = int(input())
-"""
+
 points = import_csv("2_circunf.csv")
-"""
+
     if(input3 == 3):
         cl1 = Cluster("Azul",
             (round(np.random.uniform(0,15),3),round(np.random.uniform(0,20),3)),
@@ -53,8 +53,8 @@ points = import_csv("2_circunf.csv")
 
     if(input3 == 2):
 """
-cl1 = Cluster("Azul",(1.8,4),1.5, '#1f77b4')
-cl2 = Cluster("Verde",(13,9.2),2, '#2ca02c')
+cl1 = Cluster("Azul",(3,10),3, '#1f77b4')
+cl2 = Cluster("Verde",(17,6.5),4, '#2ca02c') #(9,5)
 clusters = [cl1, cl2]
 
 soft_clustering(points,clusters)

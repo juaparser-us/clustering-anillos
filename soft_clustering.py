@@ -2,7 +2,7 @@ import math
 
 from schema import Cluster
 from methods import get_distances, calcularNuevosCluster, assign_point, comprobar_radio
-from plot_state import plot_state
+from plot_state import plot_state, initial_plot
 
 
 def soft_clustering(points,clusters):
@@ -10,6 +10,8 @@ def soft_clustering(points,clusters):
     j = 0
     ant = clusters
     fin = False
+
+    initial_plot(clusters,points)
 
     while(not fin): 
         
@@ -21,7 +23,7 @@ def soft_clustering(points,clusters):
 
             #Asignamos el punto <p> a todos los clusters con su repectiva pertenencia
             assign_point(p,gp,ant)
-        
+
         #Se muestran los resultados en una gráfrica
         plot_state(ant,points)
 
@@ -35,6 +37,7 @@ def soft_clustering(points,clusters):
         print("Centros y radios: ")
         for c in res:
             print(c.name,": ",c.center," [",c.radius,"]")
+        print()
 
         #Si los cluster no han cambiado del paso anterior, se continua el algoritmo
         for n in range(len(res)):
@@ -49,6 +52,7 @@ def soft_clustering(points,clusters):
             fin = True
         
         j = 0
+
     print("=======================================================================")
     print("FIN DEL ALGORITMO")
     print("=======================================================================")
