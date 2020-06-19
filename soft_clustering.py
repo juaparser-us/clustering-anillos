@@ -1,19 +1,23 @@
 import math
-
+import time
 from schema import Cluster
-from methods import get_distances, calcularNuevosCluster, assign_point, comprobar_radio
+from methods import get_distances, calcularNuevosCluster, assign_point, comprobar_radio, delete_noise
 from plot_state import plot_state, initial_plot
 
 
 def soft_clustering(points,clusters):
     i = 0
     j = 0
+    z = 0
+    ac = 0
     ant = clusters
     fin = False
+    start_time = time.time()
 
-    initial_plot(clusters,points)
+#   initial_plot(clusters,points)
 
     while(not fin): 
+        it_time = time.time()
         
         #Se recorren todo los puntos para calcular la distancia y clasificarlos
         for p in points:
@@ -24,8 +28,8 @@ def soft_clustering(points,clusters):
             #Asignamos el punto <p> a todos los clusters con su repectiva pertenencia
             assign_point(p,gp,ant)
 
-        #Se muestran los resultados en una gráfrica
-        plot_state(ant,points)
+        if(z==1):
+            plot_state(ant,points)
 
         #Se actualizan los radios y los centros
         res = calcularNuevosCluster(ant)
@@ -33,6 +37,9 @@ def soft_clustering(points,clusters):
         i += 1
 
         print("Iteración",i,"===========================================================")
+        if(z==0):
+            ac = ac + (time.time() - it_time)
+        print("Tiempo de iteración: ", (time.time() - it_time))
         print("Número de clusters: ",len(clusters))
         print("Centros y radios: ")
         for c in res:
@@ -48,11 +55,18 @@ def soft_clustering(points,clusters):
 
         ant = res
 
-        if(j == len(res)):
+        if(z == 1):
             fin = True
+
+        if(j == len(res)):
+            z = 1
         
         j = 0
 
-    print("=======================================================================")
-    print("FIN DEL ALGORITMO")
-    print("=======================================================================")
+    #Se muestran los resultados en una gráfrica
+    if(fin):
+        print("=======================================================================")
+        print("FIN DEL ALGORITMO")
+        print("TIEMPO DE EJECUCIÓN: ", ac)
+        print("=======================================================================")
+
