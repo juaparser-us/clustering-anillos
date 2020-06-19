@@ -41,9 +41,13 @@ def distance(p0,p1):
     return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2)
 
 def calcularNuevosCluster(clusters):
+    res = []
+
     for c in clusters:
-        update_cluster(c)
-    return clusters
+        cl = update_cluster(c)
+        res.append(cl)
+
+    return res
 
 def update_cluster(cluster):
     
@@ -62,9 +66,9 @@ def update_cluster(cluster):
     m = [math.sqrt(math.pow(xc-p[0],2) + math.pow(yc-p[1],2)) for p in points]
     r = np.mean(m)
 
-    cluster.center = (xc,yc)
-    cluster.radius = r
-    cluster.belonging = {}
+    res = Cluster(cluster.name,(xc,yc),r,cluster.color)
+
+    return res
 
 def comprobar_radio(cluster):
 
@@ -119,9 +123,9 @@ def get_tests_points(nc,nps):
 
     #Obtenemos el número de circunferencias que queremos
     for i in range(nc):
-        x = round(np.random.uniform(-3,3),3)
-        y = round(np.random.uniform(-3,3),3)
-        r = round(np.random.uniform(-3,3),3)
+        x = round(np.random.uniform(0,15),3)
+        y = round(np.random.uniform(0,20),3)
+        r = round(np.random.uniform(0,8),3)
         cir[(x,y)] = r
 
     res = []
@@ -132,8 +136,8 @@ def get_tests_points(nc,nps):
     for c in cir:
         random = 0
         while(random<nps):
-            x = round(np.random.uniform(-6,6),3)
-            y = round(np.random.uniform(-6,6),3)
+            x = round(np.random.uniform(0,23),3)
+            y = round(np.random.uniform(0,28),3)
 
             ec = (x - c[0])**2 + (y - c[1])**2 
             r = cir[c]
@@ -146,12 +150,12 @@ def get_tests_points(nc,nps):
     for i in range(len(res_x)):
         res.append((res_x[i],res_y[i]))
 
-    fig, ax = plt.subplots()
-    ax.set(xlim=(-10, 10), ylim = (-10, 10))
+    __, ax = plt.subplots()
+    ax.set(xlim=(0, 25), ylim = (0, 30))
 
     plt.plot(res_x,res_y,'o',markersize=2)
     plt.show()
-
+    
     return res
 
 # TESTING -----------------------------------------------------------------------------------
