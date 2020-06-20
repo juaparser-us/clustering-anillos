@@ -10,6 +10,7 @@ class Cluster():
         self.radius = radius
         self.belonging = {}
         self.color = color
+       # self.noise = [] PRUEBA DE LA DETECCIÓN DE RUIDO (No completado)
     
     def get_result(self):
         return [self.name,self.center,self.radius,self.belonging]

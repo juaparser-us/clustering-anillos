@@ -13,6 +13,7 @@ input1 = int(input())
 if (input1 == 1):
 """
 points = get_tests_points(2,70)
+
 """
     cl1 = Cluster("Azul",
         (round(np.random.uniform(0,15),3),round(np.random.uniform(0,20),3)),
@@ -58,3 +59,4 @@ cl2 = Cluster("Verde",(17,6.5),4, '#2ca02c') #(9,5)
 clusters = [cl1, cl2]
 
 soft_clustering(points,clusters)
+

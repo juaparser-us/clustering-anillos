@@ -50,7 +50,11 @@ def plot_state(clusters, points):
         ax.add_artist(a_circle)
         for p in belongings:
             ax.scatter(p[0],p[1], c=c.color)
-    
+
+        """ PRUEBA DE DETECCIÓN DE RUIDO (No completado)  
+        for d in c.noise:
+            ax.scatter(d[0],d[1],c="#000000")
+        """
   
     plt.show();
 

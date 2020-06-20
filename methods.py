@@ -35,7 +35,15 @@ def assign_point(point,gp,clusters):
     for c in clusters:
         if(max[1] == 0 or gp[c]>max[1]):
             max = (c,gp[c])
+    
     max[0].assign(point,max[1])
+    
+    """    PRUEBA DE LA DETECCIÓN DE RUIDO (No completado)    
+    if(max[1] > 0.15):
+        max[0].assign(point,max[1])
+    else:
+        max[0].noise.append(point)
+    """
 
 def distance(p0,p1):
     return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2)
