@@ -1,7 +1,7 @@
 import math
 import time
 from schema import Cluster
-from methods import get_distances, calcularNuevosCluster, assign_point, comprobar_radio
+from methods import get_distances, calcularNuevosCluster, assign_point
 from plot_state import plot_state, initial_plot
 
 
