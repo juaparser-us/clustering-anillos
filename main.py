@@ -50,5 +50,18 @@ if(input1 == 2):
         cl1 = Cluster("Azul",(3,10),3, '#1f77b4')
         cl2 = Cluster("Verde",(17,6.5),4, '#2ca02c') #(9,5)
         clusters = [cl1, cl2]
+    else:
+        #Aqui se puede introducir manualmente el número de clústeres que se quiere si es para
+        #importar un csv personalizado
+        cl1 = Cluster("Azul",
+            (round(np.random.uniform(0,15),3),round(np.random.uniform(0,20),3)),
+            round(np.random.uniform(0,8),3), '#1f77b4')
+        cl2 = Cluster("Verde",
+            (round(np.random.uniform(0,15),3),round(np.random.uniform(0,20),3)),
+            round(np.random.uniform(0,8),3), '#2ca02c')
+        cl3 = Cluster("Rojo",
+            (round(np.random.uniform(0,15),3),round(np.random.uniform(0,20),3)),
+            round(np.random.uniform(0,8),3), '#cf1717')
+        clusters = [cl1, cl2, cl3]
 
 soft_clustering(points,clusters)
