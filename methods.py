@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from plot_state import plot_state
 import csv
 
+# Método para leer archivos .csv
 def import_csv(file):
 
     with open(file, newline='') as File:  
@@ -15,6 +16,7 @@ def import_csv(file):
     
     return res
 
+# Método que calcula los grados de pertenencia de un punto a todos los clusters
 def get_distances(p,clusters):
     
     belongings = []
@@ -30,6 +32,7 @@ def get_distances(p,clusters):
     
     return result
 
+# Se asigna un punto a un cluster mediante el valor de su grado de pertenencia
 def assign_point(point,gp,clusters):
     max = (None,0)
     for c in clusters:
@@ -45,9 +48,11 @@ def assign_point(point,gp,clusters):
         max[0].noise.append(point)
     """
 
+# Método que calcula la distancia entre dos puntos
 def distance(p0,p1):
     return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2)
 
+# Se actualizan todos los clusters, usando el método siguiente
 def calcularNuevosCluster(clusters):
     res = []
 
@@ -57,6 +62,7 @@ def calcularNuevosCluster(clusters):
 
     return res
 
+# Actualiza los centros y los radios de un cluster
 def update_cluster(cluster):
     
     points = cluster.belonging
@@ -64,6 +70,7 @@ def update_cluster(cluster):
     x = []
     y = []
     pond = []
+    # Se calcula la media ponderada con los grados de pertenencia
     for k in points.keys():
         x.append(k[0]*points[k])
         y.append(k[1]*points[k])
@@ -78,6 +85,9 @@ def update_cluster(cluster):
 
     return res
 
+# Método para calcular que los puntos de un cluster pertenecen
+# a una circunferencia (NO COMPLETADO)
+"""
 def comprobar_radio(cluster):
 
     puntos = list(cluster.belonging.keys())
@@ -100,7 +110,10 @@ def comprobar_radio(cluster):
         
        
     return lista
-
+"""
+# Método para ordenar la lista de puntos por distancia usando el 
+# algoritmo burbuja (NO COMPLETADO)
+"""
 def bubbleSort(lista):
 
     n = len(lista)
@@ -125,44 +138,10 @@ def bubbleSort(lista):
         i += 1
 
     return result
-
-def get_tests_points(nc,nps):
-    cir = {}
-
-    cir[(9,5)] = 3
-    cir[(9,5.01)] = 5
-
-    res = []
-    res_x = []
-    res_y = []
-
-    random = 0
-    for c in cir:
-        random = 0
-        while(random<nps):
-            x = round(np.random.uniform(0,23),3)
-            y = round(np.random.uniform(0,28),3)
-
-            ec = (x - c[0])**2 + (y - c[1])**2 
-            r = cir[c]
-
-            if((ec > (r**2)-0.1) and (ec < (r**2)+0.1) and (x not in res_x) and (y not in res_y)):
-                res_x.append(x)
-                res_y.append(y)
-                random += 1
-    
-    for i in range(len(res_x)):
-        res.append((res_x[i],res_y[i]))
-
-    __, ax = plt.subplots()
-    ax.set(xlim=(0, 25), ylim = (0, 30))
-
-    plt.plot(res_x,res_y,'o',markersize=2)
-    plt.show()
-    
-    return res
-
 """
+
+# Método que genera aleatoriamente nubes de punto con forma de circunferencias 
+# eligiendo el número de circunferencias y los puntos para cada una
 def get_tests_points(nc,nps):
     cir = {}
 
@@ -177,6 +156,7 @@ def get_tests_points(nc,nps):
     res_x = []
     res_y = []
 
+    # Se comprueba que el punto aleatorio pertenece al perímetro de la circunferencia
     random = 0
     for c in cir:
         random = 0
@@ -186,7 +166,8 @@ def get_tests_points(nc,nps):
 
             ec = (x - c[0])**2 + (y - c[1])**2 
             r = cir[c]
-
+            # Se compara con la ecuación de la circunferencia y si coincide,
+            #  se escoge ese punto
             if((ec > (r**2)-0.1) and (ec < (r**2)+0.1) and (x not in res_x) and (y not in res_y)):
                 res_x.append(x)
                 res_y.append(y)
@@ -195,6 +176,7 @@ def get_tests_points(nc,nps):
     for i in range(len(res_x)):
         res.append((res_x[i],res_y[i]))
 
+    # Aquí se representa la nube de puntos obtenida
     __, ax = plt.subplots()
     ax.set(xlim=(0, 25), ylim = (0, 30))
 
@@ -202,79 +184,3 @@ def get_tests_points(nc,nps):
     plt.show()
     
     return res
-"""
-# TESTING -----------------------------------------------------------------------------------
-"""
-cl1 = Cluster("azul",(20.876190476190477, 20.95238095238095),4.922205716383306, '#1f77b4')
-cl2 = Cluster("verde",(9.658842682776278, 5.121325523600608),2.5272781901055117, '#2ca02c')
-cl3 = Cluster("rojo",(13.644117647058826, 8.658823529411766),5.576984354132253, '#cf1717')
-clusters = [cl1, cl2, cl3]
-
-p = (9,8)
-
-gp = get_distances(p,clusters)
-assign_point(p,gp,clusters)
-
-near_cluster(cl2)
-near_cluster(cl1)
-
-dic = {(1,2):0.8,(2,1):0.15}
-x = []
-y = []
-for k in dic.keys():
-    x.append(k[0]*dic[k])
-    y.append(k[1]*dic[k])
-
-dic = {(1,2):0.8,(2,1):0.15}
-p = list(dic.keys())[0]
-del dic[p]
-print(dic)
-( 8.487809590880826 , 4.94469122298428 )
-2.5352548921005265
-
-center = (8.487809590880826, 4.94469122298428)
-p1 = (7,7.3)
-p2 = (8,7.8)
-p3 = (9,7)
-p4 = (9.8,6.8)
-
-print(distance(p1,center))
-print(distance(p2,center))
-print("Diff: ",abs(distance(p1,center)-distance(p2,center)))
-print(distance(p3,center))
-print("Diff: ",abs(distance(p2,center)-distance(p3,center)))
-print(distance(p4,center))
-print("Diff: ",abs(distance(p2,center)-distance(p4,center)))
-
-
-cl3 = Cluster("Rojo",(8.487809590880826, 4.94469122298428),2.5352548921005265, '#cf1717')
-clusters = [cl3]
-points = {(7, 7.3): 0.4898448238792652, (6, 5): 0.4984003895632626, (9, 2): 0.48479580574633474, (6.4, 3.5): 0.49988091281836766, (11, 5): 0.49901508129061906, (9, 7): 0.4808137650678761, (10.4, 3.6): 0.49223693157126824, (10.6, 6.2): 0.4963245607552876, (6.2, 6): 0.4994236960219641, (6.6, 6.8): 0.495666729923895, (8, 7.8): 0.4836882665719938, (8.2, 2.1): 0.48943613507370826, (7.4, 2.5): 0.49544440425992986, (6.1, 4.2): 0.498875799052121, (9.5, 3.1): 0.4840837142832339, (10.8, 4.2): 0.4956299141697104, (10.8, 5.9): 0.49844381912758096, (9.8, 6.8): 0.48762839211439934}
-cl3.belonging = points
-
-sort = sorted(points , key=lambda k: [k[1], k[0]])
-print(sort)
-fig, ax = plt.subplots()
-ax.set(xlim=(0, 30), ylim = (0, 25))
-
-for p in sort:
-    ax.scatter(p[0],p[1])
-plt.show()
-
-
-print("LONGITUD: ",len(points.keys()))
-res = comprobar_radio(cl3)
-print(res)
-print()
-ps = cl3.belonging
-print(ps)
-
-plot_state(clusters,list(ps.keys()))
-
-print(cl3.center,"-",cl3.radius)
-
-update_cluster(cl3)
-
-print(cl3.center,"-",cl3.radius)
-"""
-

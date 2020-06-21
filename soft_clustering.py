@@ -1,20 +1,22 @@
 import math
 import time
 from schema import Cluster
-from methods import get_distances, calcularNuevosCluster, assign_point, comprobar_radio, delete_noise
+from methods import get_distances, calcularNuevosCluster, assign_point, comprobar_radio
 from plot_state import plot_state, initial_plot
 
 
 def soft_clustering(points,clusters):
+    
     i = 0
     j = 0
     z = 0
     ac = 0
     ant = clusters
     fin = False
-    start_time = time.time()
 
-#   initial_plot(clusters,points)
+    initial_plot(clusters,points)
+
+    start_time = time.time()
 
     while(not fin): 
         it_time = time.time()
@@ -28,14 +30,15 @@ def soft_clustering(points,clusters):
             #Asignamos el punto <p> a todos los clusters con su repectiva pertenencia
             assign_point(p,gp,ant)
 
+        # Se muestra el estado final del algoritmo
         if(z==1):
             plot_state(ant,points)
 
         #Se actualizan los radios y los centros
         res = calcularNuevosCluster(ant)
-
         i += 1
 
+        # Mostramos en la consola los resultados de cada iteración
         print("Iteración",i,"===========================================================")
         if(z==0):
             ac = ac + (time.time() - it_time)
@@ -55,6 +58,7 @@ def soft_clustering(points,clusters):
 
         ant = res
 
+        # La condición de parada del alogritmo
         if(z == 1):
             fin = True
 
@@ -63,10 +67,10 @@ def soft_clustering(points,clusters):
         
         j = 0
 
-    #Se muestran los resultados en una gráfrica
+    # Se imprime en la consola un mensaje de final de ejecución, 
+    # con su tiempo total de ejecución
     if(fin):
         print("=======================================================================")
         print("FIN DEL ALGORITMO")
         print("TIEMPO DE EJECUCIÓN: ", ac)
         print("=======================================================================")
-
